@@ -1,68 +1,45 @@
+
 /**
  * 
- * 
+ * NEW and IMPROVED 
  * ROCK PAPER SCISSORS
  * 
+ * by Bismillah Constantino
  * 
  * 
  */
 
 
 
-//Initialize
-let computerScore = 0;
+
+
+//Initialize Human and Computer Scores
 let humanScore = 0;
+let computerScore = 0;
 
 
-console.log("Hello world");
+/** Computer choice function  */
 
+/**
+ * 
+ * This function randomly chooses between 3 choices 
+ * then returns it.
+ * 
+ */
 
-let game = true;
-while (game) {
-    let num = prompt("Enter how many rounds you want to play >> ");
-    let rounds = parseInt(num);
-
-    for (let i = 0; i < rounds; i++) {
-        const humanChoice = prompt(`Round ${i + 1}: Enter rock, paper, or scissors >> `);
-        const computerChoice = getComputerChoice();
-
-        const result = playRound(humanChoice, computerChoice);
-
-        console.log(`You chose ${humanChoice}`);
-        console.log(`Computer Chose ${computerChoice}`);
-
-        if (result === "You win!") {
-            humanScore++;
-            console.log(`You win! Scores:\nYou: ${humanScore} Computer: ${computerScore}`);
-        } else if (result === "Computer wins!") {
-            computerScore++;
-            console.log(`You lose! Scores:\nYou: ${humanScore} Computer: ${computerScore}`);
-        } else {
-            console.log(`It's a tie! Scores:\nYou: ${humanScore} Computer: ${computerScore}`)
-        }
-
-    }
-
-    let finalResult;
-
-    if (humanScore > computerScore) {
-        finalResult = "You are the overall winner!";
-    } else if (computerScore > humanScore) {
-        finalResult = "Computer is the overall winner!";
-    } else {
-        finalResult = "It's a tie!"
-    }
-
-    console.log(finalResult);
-    alert(finalResult);
-
-    let response = prompt("Do you want to play again? Y/n").toLowerCase();
-    if (response !== "y") {
-        game = false;
-    }
+function getComputerChoice(){
+    const choice = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * 3);
+    return choice[randomIndex];
 
 }
 
+/** Play Round Function */
+/*
+ * 
+ * This function compares the human and computer choices
+ * 
+ */
 function playRound(human, computer) {
     if (human === computer) {
         return "tie"
@@ -76,12 +53,44 @@ function playRound(human, computer) {
         return "Computer wins!"
     }
 }
-// Create a function that will get computer choice
-function getComputerChoice() {
-    const choice = ["rock", "paper", "scissors"];
-    const randomIndex = Math.floor(Math.random() * 3);
-    return choice[randomIndex];
-}
+
+/**
+ * 
+ * Select all button
+ * 
+ */
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const humanChoice = button.id;
+        const computerChoice = getComputerChoice();
+
+        const result = playRound(humanChoice, computerChoice);
+
+        if(result == "You win!"){
+            humanScore++;
+            document.getElementById("humanScore").textContent = humanScore;
+            console.log(result);
+        }else if (result == "Computer wins!"){
+            computerScore++;
+            document.getElementById("computerScore").textContent = computerScore;
+            console.log(result);
+        }else{
+            console.log(result);
+        }
+
+        if(humanScore == 5){
+            alert("You Win!");
+            location.reload();
+        }else if(computerScore == 5){
+            alert("Computer wins!")
+            location.reload();
+        }
+        
+    })
+})
 
 
 
