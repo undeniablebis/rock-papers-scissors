@@ -18,12 +18,13 @@ console.log("Hello world");
 
 
 let game = true;
-while (game) {
-    let num = prompt("Enter how many rounds you want to play >> ");
-    let rounds = parseInt(num);
+// while (game) {
+    // let num = prompt("Enter how many rounds you want to play >> ");
+    // let rounds = parseInt(num);
 
-    for (let i = 0; i < rounds; i++) {
-        const humanChoice = prompt(`Round ${i + 1}: Enter rock, paper, or scissors >> `);
+    // for (let i = 0; i < rounds; i++) {
+        // const humanChoice = prompt(`Round ${i + 1}: Enter rock, paper, or scissors >> `);
+        const humanChoice = prompt(`Enter rock, paper, or scissors >> `);
         const computerChoice = getComputerChoice();
 
         const result = playRound(humanChoice, computerChoice);
@@ -41,7 +42,7 @@ while (game) {
             console.log(`It's a tie! Scores:\nYou: ${humanScore} Computer: ${computerScore}`)
         }
 
-    }
+    // }
 
     let finalResult;
 
@@ -56,12 +57,12 @@ while (game) {
     console.log(finalResult);
     alert(finalResult);
 
-    let response = prompt("Do you want to play again? Y/n").toLowerCase();
-    if (response !== "y") {
-        game = false;
-    }
+    // let response = prompt("Do you want to play again? Y/n").toLowerCase();
+    // if (response !== "y") {
+    //     game = false;
+    // }
 
-}
+// }
 
 function playRound(human, computer) {
     if (human === computer) {
@@ -82,6 +83,3 @@ function getComputerChoice() {
     const randomIndex = Math.floor(Math.random() * 3);
     return choice[randomIndex];
 }
-
-
-
