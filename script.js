@@ -42,7 +42,7 @@ function getComputerChoice(){
  */
 function playRound(human, computer) {
     if (human === computer) {
-        return "tie"
+        return "It's a tie"
     } else if (
         (human === "rock" && computer === "scissors") ||
         (human === "scissors" && computer === "paper") ||
